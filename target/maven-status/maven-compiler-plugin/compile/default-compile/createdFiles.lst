@@ -2,10 +2,8 @@ pedro\ieslaencanta\com\dawpuzzletemplate\Clock.class
 pedro\ieslaencanta\com\dawpuzzletemplate\Game.class
 pedro\ieslaencanta\com\dawpuzzletemplate\IWarnClock.class
 pedro\ieslaencanta\com\dawpuzzletemplate\Resources.class
-pedro\ieslaencanta\com\dawpuzzletemplate\Board.class
 module-info.class
 pedro\ieslaencanta\com\dawpuzzletemplate\Clock$ClockState.class
-pedro\ieslaencanta\com\dawpuzzletemplate\Board$1.class
 pedro\ieslaencanta\com\dawpuzzletemplate\SystemInfo.class
 pedro\ieslaencanta\com\dawpuzzletemplate\App.class
 pedro\ieslaencanta\com\dawpuzzletemplate\BubbleType.class
