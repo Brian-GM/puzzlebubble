@@ -92,6 +92,8 @@ public class Board implements IKeyListener {
      */
     public void setDebug(boolean debug) {
         this.debug = debug;
+        if(this.shuttle!=null)
+            this.shuttle.setDebug(this.debug);
 
     }
 
@@ -120,6 +122,13 @@ public class Board implements IKeyListener {
         //actualizar el juego
         if (this.ball != null && this.ball.getBalltype() != null) {
             this.ball.move(this.game_zone);
+        }
+        if(this.shuttle!=null){
+            if(this.left_press)
+                this.shuttle.moveLeft();
+            if(this.right_press)
+                this.shuttle.moveRight();
+           
         }
     }
 
