@@ -22,6 +22,7 @@ public class Shuttle {
     private Bubble actual,next;
     private boolean debug;
     private float incremento=1.40625f;
+    private int arrow_size= 64;
     
     /*
     private next_bubble = new Bubble();
@@ -55,15 +56,15 @@ public class Shuttle {
     private Point2D getArrowSplitter(){
         Point2D p=null;
         int imagen,f,c;
-        if(this.getAngle()<=90){
+        if(this.getAngle()<90){
             imagen=(int)((90-this.getAngle())/this.incremento);
             f=imagen/16;
             c=imagen %16;
             p= new Point2D(c,f);
         }else{
-            imagen=(int)((90+this.getAngle())/this.incremento);
-            f=imagen/16;
-            c=imagen %16;
+            imagen=(int)((180-this.getAngle())/this.incremento);
+            f=3 - imagen/16;
+            c=15 -imagen %16;
             p= new Point2D(c,f);
 
         }
@@ -89,18 +90,37 @@ public class Shuttle {
                     61 * Game.SCALE,
                     41 * Game.SCALE);
         if(arrow!=null){
+            
+            //aqui para invertir las imagenes espejo
+            if (this.angle < 90.0f){
             gc.drawImage(r.getImage("spriters"),
                     //inicio de la posicion
-                    arrow.getX()*65,
+                    arrow.getX()*65,//65
                     1545+ arrow.getY()*65,
                     
-                    64,
-                    64,
+                    this.arrow_size,
+                    this.arrow_size,
                     //dibujar en el lienzo
-                    (this.center.getX() - 64 / 2) * Game.SCALE,
-                    (this.center.getY() - 64 / 2) * Game.SCALE,
-                    64 * Game.SCALE,
-                    64 * Game.SCALE);
+                    (this.center.getX() - this.arrow_size / 2) * Game.SCALE,
+                    (this.center.getY() - this.arrow_size / 2) * Game.SCALE,
+                    this.arrow_size * Game.SCALE,
+                    this.arrow_size * Game.SCALE);
+            }
+            if (this.angle > 90.0f){
+            
+                gc.drawImage(r.getImage("spriters"),
+                        //inicio de la posicion
+                        arrow.getX()*65,
+                        1545+ arrow.getY()*65,
+                        
+                        this.arrow_size,
+                        this.arrow_size,
+                        //dibujar en el lienzo
+                        (this.center.getX() + this.arrow_size / 2) * Game.SCALE,
+                        (this.center.getY() - this.arrow_size / 2) * Game.SCALE,
+                        -this.arrow_size * Game.SCALE,
+                        this.arrow_size * Game.SCALE);
+            }
         }    
         if(this.isDebug())  {
             gc.setStroke(Color.RED);
@@ -127,6 +147,7 @@ public class Shuttle {
         this.setAngle(Shuttle.getMin_angle());
     }        
             }
+    
 
     /**
      * @return the angle

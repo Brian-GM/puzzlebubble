@@ -32,7 +32,7 @@ public class Board implements IKeyListener {
     private Shuttle shuttle;
     private boolean debug;
     private boolean left_press, right_press;
-
+    private Grid bobblegrid;
     /**
      * constructor
      *
@@ -49,7 +49,7 @@ public class Board implements IKeyListener {
                         (this.game_zone.getMaxY() - 18)
                 ));
         this.debug = false;
-
+        this.bobblegrid = new Grid ((int) this.game_zone.getMinX(), (int) this.game_zone.getMinY());
     }
 
     /**
@@ -123,6 +123,10 @@ public class Board implements IKeyListener {
         if (this.ball != null && this.ball.getBalltype() != null) {
             this.ball.move(this.game_zone);
         }
+        if (this.ball != null && this.bobblegrid != null){
+            this.bobblegrid.collision(ball);
+        }
+            
         if(this.shuttle!=null){
             if(this.left_press)
                 this.shuttle.moveLeft();
@@ -194,6 +198,7 @@ public class Board implements IKeyListener {
                 break;
             case RIGHT:
                 this.right_press = true;
+
                 break;
         }
     }
@@ -219,7 +224,7 @@ public class Board implements IKeyListener {
                 this.ball.init(new Point2D(
                         (this.game_zone.getMaxX() - this.game_zone.getWidth() / 2),
                         (this.game_zone.getMaxY() - 18)
-                ), (float) (Math.random() * 360));
+                ),   360 - shuttle.getAngle());
                 this.ball.play();
                 
                 break;
